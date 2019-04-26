@@ -4,7 +4,7 @@ provide = "google" {
  zone = "europe-west2-a"
 }
 resource "google_compute_instance" "vm_instance"{
- name = "id-assessment-a"
+ name = "id-assignment-a"
  machine_type = "n1-standard-1"
  boot_disk {
   initialize_params {
@@ -12,13 +12,13 @@ resource "google_compute_instance" "vm_instance"{
   }
  }
  network_interface {
-  network = "IDMobileAssignment-a"
+  network = "id-mobile-net"
   access_config = {
   }
  }
 }
 resource "google_compute_network" "vpc_network"{
- name = "IDMobileAssignment-a"
+ name = "id-mobile-net"
  auto_create_subnetworks = "false"
  routing_mode = "regional"
 }
