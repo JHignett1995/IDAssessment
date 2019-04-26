@@ -1,5 +1,6 @@
 provider "google" {
-  project = "{IDMobile-Assignment}"
+  credentials = "${file("/home/key.json")}"
+  project = "idmobile-assignment"
   region  = "europe-west2"
   zone    = "europe-west2-a"
 }
@@ -15,7 +16,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    network       = "{id-mobile-net}"
+    network       = "id-mobile-net"
     access_config = {
     }
   }
@@ -34,7 +35,7 @@ resource "google_compute_instance" "vm_instance" {
 
  resource "google_compute_network" "vpc_network"{
   name = "id-mobile-net"
-  auto_create_subnetworks = "false"
+  auto_create_subnetworks = "true"
   routing_mode = "REGIONAL"
  }
 resource "google_compute_firewall" "default" {
