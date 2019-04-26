@@ -37,3 +37,16 @@ resource "google_compute_instance" "vm_instance" {
   auto_create_subnetworks = "false"
   routing_mode = "REGIONAL"
  }
+resource "google_compute_firewall" "default" {
+  name    = "idm-firewall"
+  network = "id-mobile-net"
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "8080", "1000-2000", "3000"]
+  }
+}
