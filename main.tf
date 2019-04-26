@@ -15,9 +15,20 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    network       = "{id-mobilt-net}"
+    network       = "{id-mobile-net}"
     access_config = {
     }
+  }
+  provisioner "file" {
+    source      = "setup.sh"
+    destination = "/tmp/script.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/setup.sh",
+      "/tmp/setup.sh args",
+    ]
   }
 }
 
